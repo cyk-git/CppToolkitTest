@@ -12,6 +12,8 @@ data/
 # Log files
 *_log.txt
 *_log.txt.nssyncsc
+*log.txt
+*log
 
 # User-specific files
 *.rsuser

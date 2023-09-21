@@ -27,9 +27,15 @@
     <ClCompile Include="..\submodules\cpp_toolkit\date_time.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\submodules\cpp_toolkit\async_consumer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\submodules\cpp_toolkit\handle_exception.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\submodules\cpp_toolkit\async_consumer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

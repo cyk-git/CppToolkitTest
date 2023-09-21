@@ -2,19 +2,31 @@
 // 此项目用于常用C++工具库CppTookit的开发测试。CppTookit拥有独立的仓库，其作为一个子模块导入该仓库
 
 #include <iostream>
-#include <cpp_toolkit\handle_exception.h>
+#include <cpp_toolkit\async_consumer.h>
 #include <string>
+#include <Windows.h>
+
+bool flag_procudce_ = true;
+
+void ProducerLoop() {
+  using namespace cpptoolkit;
+  int i = 0;
+  AsyncConsumerTest consumer(1024, 1024);
+  consumer.Init();
+  while (flag_procudce_) {
+    std::unique_ptr<int[]> data = std::make_unique<int[]>(1024 * 1024);
+    data[0] = i++;
+    consumer.ProcessDataAsync(std::move(data));
+    //Sleep(1);
+  }
+}
 
 int main() { 
   using namespace cpptoolkit;
-  InitLogger();
-  try {
-    //boost::throw_exception(boost::enable_error_info(std::runtime_error("test"))
-    //                           << error_level(ErrorLevel::E_ERROR),
-    //                       BOOST_CURRENT_LOCATION);
-    CPPTOOLKIT_THROW_EXCEPTION(std::runtime_error("test"), ErrorLevel::E_WARNING);
-  } catch (...) {
-    handle_exception(boost::current_exception());
-    //LOG_ERROR(boost::diagnostic_information(boost::current_exception()));
-  }
+  InitLogger("logs", GetLogFileName("log.txt"), spdlog::level::debug);
+  std::thread producer(&ProducerLoop);
+  system("pause");
+  flag_procudce_ = false;
+  producer.join();
+  system("pause");
 }

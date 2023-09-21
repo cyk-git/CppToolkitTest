@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\submodules\cpp_toolkit\async_consumer.cpp" />
     <ClCompile Include="..\submodules\cpp_toolkit\date_time.cpp" />
     <ClCompile Include="..\submodules\cpp_toolkit\locks.cpp" />
     <ClCompile Include="..\submodules\cpp_toolkit\log.cpp" />
     <ClCompile Include="CppToolkitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\submodules\cpp_toolkit\async_consumer.h" />
     <ClInclude Include="..\submodules\cpp_toolkit\handle_exception.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
